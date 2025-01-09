@@ -87,21 +87,15 @@ public class ScreenManufacturer extends JFrame {
         addbtn.setBounds(50, 250, 100, 30);
         addbtn.addActionListener(e -> addManufacturer());
         contentPane.add(addbtn);
-        addbtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-             addManufacturer();			
-			}
-		});
+       
+        createTable();
 
         JButton resetbtn = new JButton("View");
         resetbtn.setBounds(180, 250, 100, 30);
         resetbtn.addActionListener(e -> refreshManufacturerTable());
         contentPane.add(resetbtn);
 
-        createTable();
-        refreshManufacturerTable();
+       
     
     JButton importButton = new JButton("Import");
     importButton.setBounds(577, 254, 89, 23);

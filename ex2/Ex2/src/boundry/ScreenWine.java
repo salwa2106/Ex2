@@ -126,23 +126,17 @@ System.out.println("sdsd");
         btnAdd.setBounds(50, 360, 100, 30);
         btnAdd.addActionListener(e -> addWine());
         contentPane.add(btnAdd);
-        btnAdd.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addWine();
-				
-			}
-		});
+     
+        createTable(); // Create the table structure, but no data yet.
 
         JButton btnView = new JButton("View");
         btnView.setBounds(180, 360, 100, 30);
         btnView.addActionListener(e -> refreshWineTable());
         contentPane.add(btnView);
 
-        createTable();
-        refreshWineTable();
+        // No initial call to refreshWineTable() here
     }
+
 
     private void createTable() {
         tableModel = new DefaultTableModel();
@@ -190,21 +184,44 @@ System.out.println("sdsd");
         contentPane.add(btnImportXML);
 
         // ActionListener for Import Wines button
+            
         btnImportXML.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Use the XML_FILEPATH from XmlControl to get the correct file path
                 String path = XmlControl.XML_FILEPATH;
-                
+
                 if (path != null) {
-                    // Call the method to import wines from the XML file
-                    XmlControl.getInstance().importWinesFromXML(path);
-                    refreshWineTable(); // Refresh the table after import (if necessary)
+                    boolean success = XmlControl.getInstance().importWinesFromXML(path);
+
+                    if (success) {
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Wines imported successfully!",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        refreshWineTable(); // Refresh the table after import
+                    } else {
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "already imported.",
+                            "Import Errors",
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error: Invalid XML file path.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Error: Invalid XML file path.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                    );
                 }
             }
         });
+
+
+
       
         manufacturer = new JTextField();
         manufacturer.setBounds(169, 139, 161, 20);

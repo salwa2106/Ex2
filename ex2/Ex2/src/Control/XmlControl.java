@@ -76,7 +76,7 @@ public class XmlControl {
         }
     }
     
-    public void importWinesFromXML(String path) {
+    public boolean importWinesFromXML(String path) {
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(new File(path));
@@ -105,16 +105,16 @@ public class XmlControl {
 
                         Wine wine = new Wine(catalogNumber, manufacturerId, wineTypeSerialNum, name, description, productionYear, pricePerBottle, sweetnessLevel, productImg);
                         if (!WineLogic.getInstance().addWine(
-                        	    wine.getCatalogNumber(),
-                        	    wine.getManufacturerId(),
-                        	    wine.getName(),
-                        	    wine.getWineTypeSerialNum(),
-                        	    wine.getDescription(),
-                        	    wine.getProductionYear(),
-                        	    wine.getPricePerBottle(),
-                        	    wine.getSweetnessLevel(),
-                        	    wine.getProductImg()
-                        	)) {
+                                wine.getCatalogNumber(),
+                                wine.getManufacturerId(),
+                                wine.getName(),
+                                wine.getWineTypeSerialNum(),
+                                wine.getDescription(),
+                                wine.getProductionYear(),
+                                wine.getPricePerBottle(),
+                                wine.getSweetnessLevel(),
+                                wine.getProductImg()
+                        )) {
                             errors++;
                             System.out.println("Failed to add Wine: " + catalogNumber);
                         } else {
@@ -127,17 +127,22 @@ public class XmlControl {
                 }
             }
 
-            System.out.println((errors == 0) ? "Wines imported successfully!" :
-                    String.format("Wines imported with %d errors.", errors));
-
+            if (errors == 0) {
+                System.out.println("Wines imported successfully!");
+                return true;
+            } else {
+                System.out.println(String.format("Wines imported with %d errors.", errors));
+                return false;
+            }
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage(), "Duplicate Data Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
-
 
     
     private static String getxmlPath() {

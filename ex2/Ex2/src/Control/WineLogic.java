@@ -22,6 +22,8 @@ public class WineLogic {
 	        return _instance;
 	    }
 
+	    
+	    
 	    public List<Entity.Wine> getAllWines() {
 	        List<Entity.Wine> wines = new ArrayList<>();
 	        try {
