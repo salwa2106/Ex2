@@ -2,16 +2,16 @@
 <Database>
     <Manufacturers>
         <Manufacturer>
-            <ManufacturerID>102</ManufacturerID>
-            <FullName>ABC Corp</FullName>
-            <ContactPhoneNumber>1234567890</ContactPhoneNumber>
+            <ID>123452</ID>
+            <Name>ABC Corp</Name>
+            <Phone>1234567890</Phone>
             <Address>123 Elm Street</Address>
             <Email>contact@abccorp.com</Email>
         </Manufacturer>
         <Manufacturer>
-            <ManufacturerID>456</ManufacturerID>
-            <FullName>XYZ Inc</FullName>
-            <ContactPhoneNumber>0987654321</ContactPhoneNumber>
+            <ID>456</ID>
+            <Name>XYZ Inc</Name>
+            <Phone>0987654321</Phone>
             <Address>456 Oak Avenue</Address>
             <Email>support@xyzinc.com</Email>
         </Manufacturer>

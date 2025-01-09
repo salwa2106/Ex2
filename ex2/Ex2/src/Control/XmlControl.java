@@ -45,12 +45,15 @@ public class XmlControl {
                         String phone = el.getElementsByTagName("Phone").item(0).getTextContent();
                         String address = el.getElementsByTagName("Address").item(0).getTextContent();
                         String email = el.getElementsByTagName("Email").item(0).getTextContent();
-                         
-                        if(Manufacturerlogic.getInstance().getManufacturerById(manufacturerId)!=null) {
-                        	throw new IllegalArgumentException("Manufacturer ID already exists");
+
+                        // Check for duplicates
+                        if (Manufacturerlogic.getInstance().getManufacturerById(manufacturerId) != null) {
+                            System.out.println("Duplicate Manufacturer ID: " + manufacturerId);
+                            errors++;
+                            continue; // Skip this entry
                         }
-                        
-                        
+
+                        // Attempt to add manufacturer
                         if (!Manufacturerlogic.getInstance().addManufacturer(manufacturerId, fullName, phone, address, email)) {
                             errors++;
                             System.out.println("Failed to add Manufacturer: " + manufacturerId);
@@ -64,17 +67,14 @@ public class XmlControl {
                 }
             }
 
-
             System.out.println((errors == 0) ? "Manufacturers imported successfully!" :
                     String.format("Manufacturers imported with %d errors.", errors));
 
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Duplicate Data Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     
     public boolean importWinesFromXML(String path) {
         try {
