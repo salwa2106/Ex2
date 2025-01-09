@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Control.WineLogic;
+import Control.XmlControl;
 import Entity.Consts;
 import Entity.Wine;
 import java.awt.event.ActionListener;
@@ -184,7 +185,27 @@ System.out.println("sdsd");
 			       removeWine();
 			}
 		});
-        
+        JButton btnImportXML = new JButton("Import Wines from XML");
+        btnImportXML.setBounds(732, 357, 200, 30);
+        contentPane.add(btnImportXML);
+
+        // ActionListener for Import Wines button
+        btnImportXML.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Use the XML_FILEPATH from XmlControl to get the correct file path
+                String path = XmlControl.XML_FILEPATH;
+                
+                if (path != null) {
+                    // Call the method to import wines from the XML file
+                    XmlControl.getInstance().importWinesFromXML(path);
+                    refreshWineTable(); // Refresh the table after import (if necessary)
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Invalid XML file path.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+      
         manufacturer = new JTextField();
         manufacturer.setBounds(169, 139, 161, 20);
         contentPane.add(manufacturer);

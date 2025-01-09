@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Database>
+    <Manufacturers>
+        <Manufacturer>
+            <ManufacturerID>102</ManufacturerID>
+            <FullName>ABC Corp</FullName>
+            <ContactPhoneNumber>1234567890</ContactPhoneNumber>
+            <Address>123 Elm Street</Address>
+            <Email>contact@abccorp.com</Email>
+        </Manufacturer>
+        <Manufacturer>
+            <ManufacturerID>456</ManufacturerID>
+            <FullName>XYZ Inc</FullName>
+            <ContactPhoneNumber>0987654321</ContactPhoneNumber>
+            <Address>456 Oak Avenue</Address>
+            <Email>support@xyzinc.com</Email>
+        </Manufacturer>
+    </Manufacturers>
+
+    <Wines>
+        <Wine>
+            <CatalogNumber>WINE001</CatalogNumber>
+            <ManufacturerID>102</ManufacturerID>
+            <WineTypeSerialNum>001</WineTypeSerialNum>
+            <Name>Red Wine A</Name>
+            <Description>A full-bodied red wine with rich flavors.</Description>
+            <ProductionYear>2020</ProductionYear>
+            <PricePerBottle>15.99</PricePerBottle>
+            <SweetnessLevel>Dry</SweetnessLevel>
+            <ProductImg>redwineA.jpg</ProductImg>
+        </Wine>
+        <Wine>
+            <CatalogNumber>WINE002</CatalogNumber>
+            <ManufacturerID>102</ManufacturerID>
+            <WineTypeSerialNum>002</WineTypeSerialNum>
+            <Name>White Wine B</Name>
+            <Description>A crisp and refreshing white wine.</Description>
+            <ProductionYear>2021</ProductionYear>
+            <PricePerBottle>12.49</PricePerBottle>
+            <SweetnessLevel>Semi-Sweet</SweetnessLevel>
+            <ProductImg>whitewineB.jpg</ProductImg>
+        </Wine>
+        <Wine>
+            <CatalogNumber>WINE003</CatalogNumber>
+            <ManufacturerID>456</ManufacturerID>
+            <WineTypeSerialNum>003</WineTypeSerialNum>
+            <Name>Rose Wine C</Name>
+            <Description>A delicate and fruity rosé wine.</Description>
+            <ProductionYear>2019</ProductionYear>
+            <PricePerBottle>13.99</PricePerBottle>
+            <SweetnessLevel>Semi-Dry</SweetnessLevel>
+            <ProductImg>roseWineC.jpg</ProductImg>
+        </Wine>
+        <Wine>
+            <CatalogNumber>WINE004</CatalogNumber>
+            <ManufacturerID>456</ManufacturerID>
+            <WineTypeSerialNum>004</WineTypeSerialNum>
+            <Name>Sparkling Wine D</Name>
+            <Description>A bubbly and festive sparkling wine.</Description>
+            <ProductionYear>2021</ProductionYear>
+            <PricePerBottle>18.49</PricePerBottle>
+            <SweetnessLevel>Sweet</SweetnessLevel>
+            <ProductImg>sparklingWineD.jpg</ProductImg>
+        </Wine>
+    </Wines>
+</Database>

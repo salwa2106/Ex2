@@ -1,11 +1,25 @@
 package Control;
 
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import Entity.Consts;
+
 public class Manufacturerlogic {
     private static Manufacturerlogic _instance;
+    
+
+    
 
     private Manufacturerlogic() {
     }
@@ -122,6 +136,9 @@ public class Manufacturerlogic {
         }
         return false;
     }
+    
+    
 
+   
 }
 

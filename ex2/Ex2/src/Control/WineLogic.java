@@ -119,31 +119,35 @@ return false;
 	            e.printStackTrace();
 	        }
 	        return null;
+	        
+	        
 	    }
-	    public boolean updateWine(String CatalogNumber, String ProductImg, String WineName,String WineTypeSerialNumber, String Description, 
-				String ProductionYear,String PricePerBottle, String SweetnessLevel, String  ManufacturerId) {
+	    public boolean updateWine(String catalogNumber, String name, String wineTypeSerialNum, String description,
+                String productionYear, String pricePerBottle, String sweetnessLevel, String productImg,
+                String manufacturerId) {
 try {
 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
    PreparedStatement stmt = conn.prepareStatement(Consts.SQL_update_Wine)) {
 
-	stmt.setString(1, WineName); 
-	stmt.setString(2, WineTypeSerialNumber); 
-	stmt.setString(3, Description);
-	stmt.setString(4, ProductionYear);  
-	stmt.setString(5, PricePerBottle);
-	stmt.setString(6, SweetnessLevel);
-	stmt.setString(7, ProductImg);
-	stmt.setString(8, ManufacturerId);
-	stmt.setString(9, CatalogNumber);
+  stmt.setString(1, name);
+  stmt.setString(2, wineTypeSerialNum);
+  stmt.setString(3, description);
+  stmt.setString(4, productionYear);
+  stmt.setString(5, pricePerBottle);
+  stmt.setString(6, sweetnessLevel);
+  stmt.setString(7, productImg);
+  stmt.setString(8, manufacturerId);
+  stmt.setString(9, catalogNumber);
 
-  stmt.executeUpdate();
-  return true;
+  int affectedRows = stmt.executeUpdate();
+  return affectedRows > 0;
 }
 } catch (Exception e) {
 e.printStackTrace();
 }
 return false;
 }
+
 
 	}

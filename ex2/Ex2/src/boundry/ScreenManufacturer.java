@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Control.Manufacturerlogic;
 import Control.WineLogic;
+import Control.XmlControl;
 import Entity.Consts;
 import Entity.Manufacturer;
 
@@ -101,7 +102,12 @@ public class ScreenManufacturer extends JFrame {
 
         createTable();
         refreshManufacturerTable();
-    }
+    
+    JButton importButton = new JButton("Import");
+    importButton.setBounds(577, 254, 89, 23);
+    contentPane.add(importButton);
+    importButton.addActionListener(e -> importManufacturers());
+}
 
     private void createTable() {
         tableModel = new DefaultTableModel();
@@ -236,6 +242,25 @@ public class ScreenManufacturer extends JFrame {
             JOptionPane.showMessageDialog(this, "Failed to add manufacturer. Manufacturer ID may already exist.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void importManufacturers() {
+        try {
+            // Attempt to import manufacturers using XMLControl class
+            XmlControl.getInstance().importManufacturersFromXML(XmlControl.XML_FILEPATH);
+
+            // Refresh table after import
+            refreshManufacturerTable();
+
+            // Show success message
+            JOptionPane.showMessageDialog(this, "Manufacturers data imported successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            // Handle duplicate data exception
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Duplicate Data Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Handle other exceptions
+            JOptionPane.showMessageDialog(this, "Failed to import manufacturers data. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void resetFields() {
         id.setText("");
@@ -244,6 +269,7 @@ public class ScreenManufacturer extends JFrame {
         address.setText("");
         email.setText("");
     }
+    
     
 
    
